@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ganga;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GangasController extends Controller
 {
@@ -36,7 +37,7 @@ class GangasController extends Controller
             'price' => $request->price,
             'price_sale' => $request->price_sale,
             'available' => true,
-            'user_id' => $request->user_id,
+            'user_id' => Auth::user()->id,
         ]);
 
         return redirect(route('gangas.index'));
@@ -68,5 +69,11 @@ class GangasController extends Controller
         $ganga = Ganga::findOrFail($id);
         Ganga::destroy($id);
         return redirect()->route('gangas.index');
+    }
+
+    private function storeImage($request)
+    {
+        $newImageName = uniqid() . "-" . $request->title . "." . $request->image->extension();
+        return $request->image->move(public_path('images'), $newImageName);
     }
 }

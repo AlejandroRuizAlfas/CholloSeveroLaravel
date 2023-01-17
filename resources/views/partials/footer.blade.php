@@ -1,3 +1,3 @@
-<footer class="bg-black text-black text-center p-4">
+<footer class="bg-gray-800 text-white text-center p-4">
     ©CholloSevero 2023
 </footer>

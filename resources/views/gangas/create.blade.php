@@ -9,7 +9,7 @@
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <form method="POST" action="{{ route('gangas.create') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('gangas.store') }}" enctype="multipart/form-data">
             @csrf
             <!-- Email Address -->
             <div>

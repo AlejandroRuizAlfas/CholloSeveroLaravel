@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
-Route::resource('gangas', GangasController::class)->only([
+Route::resource('gangas', GangasController
+::class)->only([
     'index', 'show', 'create', 'edit', 'store', 'update'
 ]);
