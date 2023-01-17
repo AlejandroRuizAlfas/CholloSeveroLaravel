@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GangasController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
+
+Route::resource('gangas', GangasController::class)->only([
+    'index', 'show', 'create', 'edit', 'store', 'update'
+]);
