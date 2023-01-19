@@ -24,20 +24,30 @@
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                         <a href="{{  route('gangas.index') }}" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Inici</a>
+                        <a href="{{  route('gangas.new') }}" class="bg-gray-300 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Nous</a>
+                        <a href="{{  route('gangas.best') }}" class="bg-gray-300 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Destacats</a>
+
+
                         @auth
                         <a href="{{  route('gangas.create') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Crear ganga</a>
+                        <a href="{{  route('gangas.me') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Les meues ganges</a>
                         @endauth
                     </div>
                 </div>
             </div>
             <div style="float: right;color: white">
                 @if(auth()->check())
-                <a class="text-white pl-8 pt-2" href="{{ route('logout') }}">Logout</a>
+                <a class="text-white pl-8 pt-2" href="{{ route('gangas.logout') }}">Logout</a>
                 @else
-                <a class="text-white pl-8 pt-2" href="{{ route('login') }}">Login</a>
-                <a class="text-white pl-8 pt-2" href="{{ route('register') }}">Register</a>
+                <a class="text-white pl-8 pt-2 login" href="{{ route('login') }}">Login</a>
+                <a class="text-white pl-8 pt-2 register " href="{{ route('register') }}">Register</a>
                 @endif
             </div>
         </div>
     </div>
 </nav>
+<style>
+    .login {
+        margin-right: 20px;
+    }
+</style>

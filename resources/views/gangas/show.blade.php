@@ -15,7 +15,7 @@
 
         <!-- Product Description -->
         <div class="product-description">
-            <span>Categoria {{ $ganga->category }}</span>
+            <span>Categoria {{ $ganga->categoryObj->name }}</span>
             <h1 class="title-text">{{ $ganga->title }}</h1>
             <p>{{ $ganga->description }}</p>
         </div>
@@ -40,7 +40,6 @@
 
             <!-- Cable Configuration -->
             <div class="cable-config">
-
                 <a href="#" style="font-size:medium">Vendido por {{ $ganga->user->name }}</a>
             </div>
         </div>
@@ -48,6 +47,10 @@
         <!-- Product Pricing -->
         <div class="product-price">
             <span>{{ $ganga->price_sale }}€</span><span><del>{{ $ganga->price }}€</del></span>
+            @if(Auth::user()->id === $ganga->user_id)
+            <a href="{{  route('gangas.edit', $ganga->id) }}" class="cart-btn" style="background-color: orange">Editar</a>
+            <a href="{{  route('gangas.destroy', $ganga->id) }}" class="cart-btn" style="background-color: #C91524">Borrar</a>
+            @endif
             <a href="#" class="cart-btn">Comprar</a>
         </div>
     </div>
@@ -95,6 +98,10 @@
         width: 100%;
         margin: 0;
         font-family: 'Roboto', sans-serif;
+    }
+
+    .cart-btn {
+        margin-right: 10px;
     }
 
     .container {

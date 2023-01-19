@@ -1,98 +1,222 @@
 @extends('plantilla')
 @section('titulo', 'Llista de ganges')
 @section('contenido')
-<!-- <table>
-    <thead>
-        <th>Titol</th>
-        <th>Descripció</th>
-        <th>Url</th>
-        <th>Categoria</th>
-        <th>Likes</th>
-        <th>Dislikes</th>
-        <th>Preu</th>
-        <th>Preu reduit</th>
-        <th>Disponible</th>
-        <th>Usuari</th>
-    </thead>
-    <tbody>
-        @foreach($gangas as $ganga)
-        <tr>
-            <td>{{ $ganga->title }}</td>
-            <td>{{ $ganga->description }}</td>
-            <td>{{ $ganga->url }}</td>
-            <td>{{ $ganga->category }}</td>
-            <td>{{ $ganga->likes }}</td>
-            <td>{{ $ganga->unlikes }}</td>
-            <td>{{ $ganga->price }}</td>
-            <td>{{ $ganga->price_sale }}</td>
-            <td>{{ $ganga->available }}</td>
-            <td>{{ $ganga->user_id }}</td>
-        </tr>
-        @endforeach
-    </tbody> -->
-
-@foreach($gangas as $ganga)
-<div class="ganga-div">
-    <div class="div-image" style="width: 30%; float: left">
-        <img src="https://static.chollometro.com/threads/raw/1yJdt/960078_1/re/1024x1024/qt/60/960078_1.jpg" width="200px" height="200px" />
-    </div>
-
-    <div class="div-content" style="width: 70%; float: right">
-        <h2>{{ $ganga->title}}</h2>
-        <br>
-        <h3>{{ $ganga->price_sale }}€ {{ $ganga->price }}€</h3>
-        <p>{{ $ganga->description }}</p>
-        <p>Vendido por {{ $ganga->user->name }}</p><a href="{{ route('gangas.show', $ganga->id) }}" class="button">Vore ganga</a>
-
-    </div>
-</div>
-@endforeach
 
 
-</table>
+<ul class="mystyle-products">
+    @foreach($gangas as $ganga)
+    <li class="product">
+        <a href="{{ route('gangas.show', $ganga->id) }}">
+            @if($ganga->available)
+            <span class="onsale">Disponible!</span>
+            @endif
+            <img alt="" class="attachment-shop_catalog" src="https://vcdn.tikicdn.com/cache/200x200/media/catalog/product/v/e/vet%20vang%20(1).u2470.d20160606.t122127.jpg" />
+            <h3>{{ $ganga->title }}</h3>
+            <span class="price">
+                <del> <span class="amount">{{ $ganga->price }} €</span> </del>
+                <ins> <span class="amount">{{ $ganga->price_sale }} €</span> </ins>
+                <span class="sale-tag sale-tag-square">-33%</span>
+            </span>
+        </a>
+        <a class="button add_to_cart_button product_type_simple" rel="nofollow" href="#"> </a>
+        <a href="#" class="btn btn-dark btn-circle btn-review" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="ion ion-ios-move"></i></a>
+    </li>
+    @endforeach
+</ul>
 
 
 
 <style>
-    .ganga-div {
-        background-color: gray;
-        border-radius: 40px;
-        height: 250px;
-        margin: 20px 40px 20px 40px;
-        color: white;
-        padding-right: 5%;
+    /*----------------------------- Section: Products List ----------------------------- */
+    :root {
+        --breakpoint-xs: 600px;
+        --breakpoint-sm: 768px;
+        --red: #e41919;
     }
+
 
     img {
-        width: 200px;
-        height: 200px;
+        max-width: 100%;
     }
 
-    .div-image {
-        display: grid;
-        place-items: center;
-        margin-top: 25px;
+    body {
+        background: #f4f4f4;
+        font-family: sans-serif;
     }
 
-    .div-content {
-        margin-top: 40px;
-        line-height: 1.5em;
+    .mystyle-products {
+        list-style: none;
+        margin: 40px;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
     }
 
-    .button {
-        -webkit-appearance: button;
-        -moz-appearance: button;
-        appearance: button;
+    @media (max-width: var(--breakpoint-xs)) {
+        .mystyle-products {
+            display: block;
+        }
+    }
+
+    .mystyle-products.slider-products .product {
+        width: auto;
+        margin-bottom: 0;
+    }
+
+    .mystyle-products .product {
+        width: 25%;
+        margin-bottom: 20px;
+        position: relative;
+        padding: 20px;
+        background: #fff;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    @media (max-width: var(--breakpoint-sm)) {
+        .mystyle-products .product {
+            width: 50%;
+        }
+    }
+
+    @media (max-width: var(--breakpoint-xs)) {
+        .mystyle-products .product {
+            width: auto;
+        }
+    }
+
+    .mystyle-products .product:hover {
+        box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+        z-index: 7;
+    }
+
+    .mystyle-products .product:hover .btn-circle {
+        transform: translateY(0);
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .mystyle-products .product h3 {
+        font-size: 12px;
+        line-height: 20px;
+        margin-top: 10px;
+        height: 39px;
+        overflow: hidden;
+    }
+
+    @media (max-width: var(--breakpoint-xs)) {
+        .mystyle-products .product h3 {
+            height: auto;
+        }
+    }
+
+    .mystyle-products .product>a {
+        position: relative;
+        display: block;
+        color: #333;
         text-decoration: none;
-        float: right;
-        background-color: orange;
-        color: white;
-        padding: 10px 32px;
-        border-radius: 20px;
-        text-align: center;
+    }
+
+    .mystyle-products .product>a:hover {
         text-decoration: none;
-        font-size: 16px;
-        cursor: pointer;
+    }
+
+    .mystyle-products .product .add_to_cart_button {
+        display: none;
+    }
+
+    .mystyle-products .product .attachment-shop_catalog {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .mystyle-products .product .btn-circle {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        display: block;
+        padding: 0;
+        position: absolute;
+        top: 20%;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 2;
+        color: #fff;
+        transform: translateY(-20px);
+        opacity: 0;
+        visibility: hidden;
+        transition: color 0.5s 0.001s ease-out, background 0.3s 0.001s ease-out, visibility 0.5s 0.25s ease-out, opacity 0.5s 0.25s ease-out, transform 0.5s 0.25s ease-out;
+    }
+
+    .mystyle-products .product .price {
+        font-size: 14px;
+    }
+
+    .mystyle-products .product .price ins {
+        text-decoration: none;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .mystyle-products .product .price del {
+        color: #666;
+        font-size: 11px;
+        padding-right: 7px;
+        white-space: nowrap;
+    }
+
+    .mystyle-products .product .price .sale-tag {
+        color: red;
+        font-size: 12px;
+        padding-left: 7px;
+        font-weight: 700;
+    }
+
+    .mystyle-products .onsale {
+        z-index: 6;
+        position: absolute;
+        top: 15px;
+        left: -20px;
+        padding: 2px 10px;
+        background: var(--red);
+        color: #fff;
+        box-shadow: -1px 2px 3px rgba(0, 0, 0, .3);
+        border-radius: 0 5px 5px 0;
+        height: 25px;
+        line-height: 25px;
+        font-size: 0.8rem;
+        font-weight: normal;
+        padding-top: 0;
+        padding-bottom: 0;
+        min-height: 0;
+    }
+
+    .mystyle-products .onsale:before,
+    .mystyle-products .onsale:after {
+        content: "";
+        position: absolute;
+    }
+
+    .mystyle-products .onsale:before {
+        width: 7px;
+        height: 33px;
+        top: 0;
+        left: -6.5px;
+        padding: 0 0 7px;
+        background: inherit;
+        border-radius: 5px 0 0 5px;
+    }
+
+    .mystyle-products .onsale:after {
+        width: 5px;
+        height: 5px;
+        bottom: -5px;
+        left: -4.5px;
+        border-radius: 5px 0 0 5px;
+        background: #800;
     }
 </style>
 @endsection

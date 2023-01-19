@@ -32,7 +32,13 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
+Route::get('/gangas/{id}/delete', [GangasController::class, 'destroy'])->name('gangas.destroy');
+Route::get('/gangas/me', [GangasController::class, "me"])->name("gangas.me");
+Route::get('/gangas/new', [GangasController::class, "new"])->name("gangas.new");
+Route::get('/gangas/best', [GangasController::class, "best"])->name("gangas.best");
+Route::get('/logout', [GangasController::class, 'logout'])->name("gangas.logout");
+
 Route::resource('gangas', GangasController
 ::class)->only([
-    'index', 'show', 'create', 'edit', 'store', 'update'
+    'index', 'show', 'create', 'edit', 'store', 'update',
 ]);

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Category;
 use App\Models\Ganga;
 use Illuminate\Database\Seeder;
 
@@ -24,5 +25,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Ganga::factory(10)->create();
+        Category::factory(10)->create();
     }
 }

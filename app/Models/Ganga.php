@@ -20,6 +20,6 @@ class Ganga extends Model
 
     public function categoryObj()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category', 'id');
     }
 }
