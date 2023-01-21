@@ -6,7 +6,7 @@
 
     <!-- Left Column / Headphones Image -->
     <div class="left-column">
-        <img data-image="red" class="active" src="https://static.chollometro.com/threads/raw/1yJdt/960078_1/re/1024x1024/qt/60/960078_1.jpg" alt="">
+        <img data-image="red" class="active" src="{{ Storage::url('img/'.$ganga->url)  }}" alt="">
     </div>
 
 
@@ -109,6 +109,7 @@
         margin: 0 auto;
         padding: 15px;
         display: flex;
+        margin-bottom: 100px;
     }
 
     /* Columns */
@@ -138,6 +139,7 @@
         width: 512px;
         height: 512px;
         margin: 50px;
+        margin-bottom: 100px;
     }
 
 

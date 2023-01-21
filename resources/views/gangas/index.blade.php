@@ -10,7 +10,7 @@
             @if($ganga->available)
             <span class="onsale">Disponible!</span>
             @endif
-            <img alt="" class="attachment-shop_catalog" src="https://vcdn.tikicdn.com/cache/200x200/media/catalog/product/v/e/vet%20vang%20(1).u2470.d20160606.t122127.jpg" />
+            <img alt="" class="attachment-shop_catalog" src="{{ Storage::url('img/'.$ganga->url)  }}" />
             <h3>{{ $ganga->title }}</h3>
             <span class="price">
                 <del> <span class="amount">{{ $ganga->price }} €</span> </del>
@@ -37,6 +37,7 @@
 
     img {
         max-width: 100%;
+        height: 280px;
     }
 
     body {

@@ -19,7 +19,7 @@ class GangaFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'description' => $this->faker->realText(),
-            'url' => $this->faker->url(),
+            'url' => '-ganga-severa.jpg',
             'category' => $this->faker->randomNumber(1),
             'likes' => $this->faker->randomNumber(2),
             'unlikes' => $this->faker->randomNumber(2),

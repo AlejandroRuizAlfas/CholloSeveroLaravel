@@ -28,10 +28,14 @@ class GangasController extends Controller
 
     public function store(GangasRequest $request)
     {
+        $gangaID = Ganga::latest()->first()->id + 1;
+        $filename = $gangaID . "-ganga-severa.jpg";
+        $request->file('url')->storeAs('public/img', $filename);
+
         Ganga::create([
             'title' => $request->title,
             'description' => $request->description,
-            'url' => $request->url,
+            'url' => $filename,
             'category' => $request->category,
             'likes' => 0,
             'unlikes' => 0,
@@ -40,6 +44,8 @@ class GangasController extends Controller
             'available' => true,
             'user_id' => Auth::user()->id,
         ]);
+
+
 
         return redirect(route('gangas.index'));
     }

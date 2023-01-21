@@ -31,7 +31,7 @@
 
             <div class="mt-4">
                 <x-input-label for="url" :value="__('URL')" />
-                <x-text-input id="url" class="block mt-1 w-full" type="text" name="url" />
+                <x-text-input id="url" class="block mt-1 w-full" type="file" name="url" />
                 <x-input-error :messages="$errors->get('url')" class="mt-2" />
             </div>
 
@@ -63,4 +63,10 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
+
+<style>
+    form {
+        margin-bottom: 100px;
+    }
+</style>
 @endsection
