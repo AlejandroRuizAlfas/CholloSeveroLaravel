@@ -34,6 +34,7 @@ class GangaApiController extends Controller
         $ganga->title = $request->title;
         $ganga->description = $request->description;
         $ganga->url = $request->url;
+        $ganga->category = $request->category;
         $ganga->likes = $request->likes;
         $ganga->unlikes = $request->unlikes;
         $ganga->price = $request->price;
@@ -70,6 +71,7 @@ class GangaApiController extends Controller
         $ganga->title = $request->title;
         $ganga->description = $request->description;
         $ganga->url = $request->url;
+        $ganga->category = $request->category;
         $ganga->likes = $request->likes;
         $ganga->unlikes = $request->unlikes;
         $ganga->price = $request->price;
